@@ -13,6 +13,7 @@
 #include "bst.h"
 #include <cstdlib>
 #include "general.h"
+#define MAX_LENGTH 50
 
 struct Node{
   int element;
@@ -185,7 +186,25 @@ bool are_equal(Bst bst1, Bst bst2)
   if (bst1==bst2) {
     return true;
   }
-  return false;
+
+  if(bst1 != 0 && bst2 != 0)
+  {
+    int array1[MAX_LENGTH];
+    int length = traverse_pre_order(bst1, array1, 0);
+    int array2[MAX_LENGTH];
+    int length2 = traverse_pre_order(bst2, array2, 0);
+    if(length == length2)
+    {
+      bool x = true;
+      for (int i = 0; i < length; i++)
+      {
+        if(array1[i]!= array2[i])
+        {x = false;}
+      }
+      return x;
+    }
+  }
+return false;
 }
 
 /**
